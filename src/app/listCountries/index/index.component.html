@@ -1,0 +1,75 @@
+<div class="container">
+    <h2 class="text-center mt-5 mb-3">Countries Manager</h2>
+    <div class="card">
+        <div class="card-header">
+            <a routerLink="/listCountries/create"
+                class="btn btn-outline-primary float-right"
+                >Create New Log Countries
+            </a>
+        </div>
+        <div class="card-body">
+      
+            <form >
+                <div class="form-group">
+                    <label html="dateCreateInit">Initial Log Date</label>
+                    <input
+                        [(ngModel)]="dateCreateInit"
+                        type="date"
+                        class="form-control"
+                        id="dateCreateInit"
+                        name="dateCreateInit"/>
+                </div>
+                <div class="form-group">
+                    <label html="dateCreateInit">Final Log Date</label>
+                    <input
+                        [(ngModel)]="dateCreateFinal"
+                        type="date"
+                        class="form-control"
+                        id="dateCreateFinal"
+                        name="dateCreateFinal"/>
+                </div>
+                <button
+                    [disabled]="isFilter"
+                    (click)="handleFilterLogCountries()"
+                    type="button"
+                    class="btn btn-outline-primary mt-3">
+                    Filter Log Countries
+                </button>
+            </form>
+            
+            <br>
+
+            
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Request Timestamp</th>
+                        <th>Number of Countries Returned</th>
+                        <th>Countries Details</th>
+                        <th width="240px">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                      
+                    <tr *ngFor="let country of countries" >
+                        <td>{{ country.username }}</td>
+                        <td>{{ country.request_timestamp }}</td>
+                        <td>{{ country.num_countries_returned }}</td>
+                        <td>{{ country.countries_details }}</td>
+                        <td>
+                            <a [routerLink]="['/country', country.id, 'show']" class="btn btn-outline-info mx-1">Show</a>
+                            <a [routerLink]="['/country', country.id, 'edit']" class="btn btn-outline-success mx-1">Edit</a>
+                            <button
+                                (click)="handleDelete(country.id)"
+                                class="btn btn-outline-danger mx-1">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                          
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

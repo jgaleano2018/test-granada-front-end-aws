@@ -1,0 +1,56 @@
+<h2 class="text-center mt-5 mb-3">Edit Log Countries</h2>
+<div class="card">
+    <div class="card-header">
+        <a routerLink="/listCountries/index"
+            class="btn btn-outline-info float-right"
+            >View All Log Countries
+        </a>
+    </div>
+    <div class="card-body">
+        <form >
+            <div class="form-group">
+                <label html="username">User Name</label>
+                <input
+                    [(ngModel)]="logCountries.username"
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"/>
+            </div>
+            <div class="form-group">
+                <label html="request_timestamp">Request Timestamp</label>
+                <textarea
+                    [(ngModel)]="logCountries.request_timestamp"
+                    class="form-control"
+                    id="request_timestamp"
+                    rows="3"
+                    name="request_timestamp"></textarea>
+            </div>
+            <div class="form-group">
+                <label html="num_countries_returned">Number of Countries Consulted</label>
+                <input
+                    [(ngModel)]="logCountries.num_countries_returned"
+                    type="text"
+                    class="form-control"
+                    id="num_countries_returned"
+                    name="num_countries_returned"/>
+            </div>
+            <div class="form-group">
+                <label html="countries_details">Countries Details</label>
+                <input
+                    [(ngModel)]="logCountries.countries_details"
+                    type="text"
+                    class="form-control"
+                    id="countries_details"
+                    name="countries_details"/>
+            </div>
+            <button
+                [disabled]="isSaving"
+                (click)="handleSave()"
+                type="button"
+                class="btn btn-outline-primary mt-3">
+                Save Project
+            </button>
+        </form>
+    </div>
+</div>

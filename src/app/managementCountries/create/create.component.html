@@ -1,0 +1,104 @@
+<h2 class="text-center mt-5 mb-3">Load Countries</h2>
+<div class="card">
+    <div class="card-header">
+        <a routerLink="/project/index"
+            class="btn btn-outline-info float-right"
+            >View All Countries
+        </a>
+    </div>
+    <div class="card-body">
+        <form >
+            <div class="form-group">
+                <label html="userName">User Name</label>
+                <input
+                    [(ngModel)]="userName"
+                    type="text"
+                    class="form-control"
+                    id="userName"
+                    name="userName"/>
+            </div>
+            <div class="form-group">
+                <label html="numberCountriesReturned">Number Countries Consulted</label>
+                <input
+                    [(ngModel)]="numberCountriesReturned"
+                    type="text"
+                    class="form-control"
+                    id="numberCountriesReturned"
+                    name="numberCountriesReturned"/>
+            </div>
+            <button
+                [disabled]="isSaving"
+                (click)="handleSaveLogCountries()"
+                type="button"
+                class="btn btn-outline-primary mt-3">
+                Save Project
+            </button>
+        </form>
+        
+        <br>
+
+        <!--<table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Request Timestamp</th>
+                    <th>Number of Countries Returned</th>
+                    <th>Countries Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                  
+                <tr *ngFor="let country of logCountries" >
+                    <td>{{ country.username }}</td>
+                    <td>{{ country.request_timestamp }}</td>
+                    <td>{{ country.num_countries_returned }}</td>
+                    <td>{{ country.countries_details }}</td>
+                </tr>
+                      
+            </tbody>
+        </table>-->
+
+        <mat-table class="logCountries-table mat-elevation-z8" [dataSource]="dataSource"
+               matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
+
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                <mat-cell *matCellDef="let logCountries">{{logCountries.id}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef>User Name</mat-header-cell>
+                <mat-cell class="username-cell"
+                        *matCellDef="let logCountries">{{logCountries.username}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="request_timestamp">
+                <mat-header-cell *matHeaderCellDef>Request Timestamp</mat-header-cell>
+                <mat-cell class="request_timestamp-cell"
+                        *matCellDef="let logCountries">{{logCountries.request_timestamp}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="num_countries_returned">
+                <mat-header-cell *matHeaderCellDef>Number of Countries Consulted</mat-header-cell>
+                <mat-cell class="num_countries_returned-cell"
+                        *matCellDef="let logCountries">{{logCountries.num_countries_returned}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="countries_details">
+                <mat-header-cell *matHeaderCellDef>Countries Details</mat-header-cell>
+                <mat-cell class="countries_details-cell"
+                        *matCellDef="let logCountries">{{logCountries.countries_details}}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+        </mat-table>
+
+        @if (totalItems>10) {
+            <mat-paginator [length]="totalItems" [pageSize]="pageSize"
+                           [pageSizeOptions]="[10, 20, 30, 40, 50]"></mat-paginator>
+        }
+
+    </div>
+</div>
