@@ -4,7 +4,6 @@ import { AppComponent } from './app/app.component';
 
 import axios from 'axios';
 import { environment } from './environments/environment.development';
-import "tailwindcss";
  
 axios.defaults.baseURL = environment.apiUrl
   

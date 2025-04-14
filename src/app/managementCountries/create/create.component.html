@@ -1,7 +1,7 @@
 <h2 class="text-center mt-5 mb-3">Load Countries</h2>
 <div class="card">
     <div class="card-header">
-        <a routerLink="/project/index"
+        <a routerLink="/logCountries/index"
             class="btn btn-outline-info float-right"
             >View All Countries
         </a>
@@ -31,40 +31,19 @@
                 (click)="handleSaveLogCountries()"
                 type="button"
                 class="btn btn-outline-primary mt-3">
-                Save Project
+                Save Log Countries
             </button>
         </form>
         
         <br>
 
-        <!--<table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Request Timestamp</th>
-                    <th>Number of Countries Returned</th>
-                    <th>Countries Details</th>
-                </tr>
-            </thead>
-            <tbody>
-                  
-                <tr *ngFor="let country of logCountries" >
-                    <td>{{ country.username }}</td>
-                    <td>{{ country.request_timestamp }}</td>
-                    <td>{{ country.num_countries_returned }}</td>
-                    <td>{{ country.countries_details }}</td>
-                </tr>
-                      
-            </tbody>
-        </table>-->
-
         <mat-table class="logCountries-table mat-elevation-z8" [dataSource]="dataSource"
-               matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
+               matSort matSortActive="username" matSortDirection="asc" matSortDisableClear>
 
-            <ng-container matColumnDef="id">
+            <!--<ng-container matColumnDef="id">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
                 <mat-cell *matCellDef="let logCountries">{{logCountries.id}}</mat-cell>
-            </ng-container>
+            </ng-container>-->
 
             <ng-container matColumnDef="username">
                 <mat-header-cell *matHeaderCellDef>User Name</mat-header-cell>
@@ -102,3 +81,5 @@
 
     </div>
 </div>
+
+<p>create works!</p>

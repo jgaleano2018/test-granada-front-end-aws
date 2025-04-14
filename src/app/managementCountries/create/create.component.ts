@@ -22,8 +22,8 @@ export class CreateComponent {
   userName:string = ''
   numberCountriesReturned:number = 0
   logCountries: LogCountries[] = [];
-  isSaving:boolean = false
-  displayedColumns: string[] = ["id", "username", "request_timestamp", "num_countries_returned", "countries_details"];
+  isSaving:boolean = false;
+  displayedColumns: string[] = ["username", "request_timestamp", "num_countries_returned", "countries_details"];
   dataSource = [];
   
   totalItems: number = 0;
@@ -32,9 +32,19 @@ export class CreateComponent {
   constructor(public projectService: ProjectService, public logCountriesService: LogCountriesService) {}
  
   handleSaveLogCountries(){
-    this.isSaving = true
+    //this.isSaving = false
     this.totalItems = this.numberCountriesReturned;
-    this.projectService.create({userName:this.userName, numberCountriesReturned:this.numberCountriesReturned})
+
+    console.log("okkkkkkkkkkkkkkkk")
+    alert("HEREEEEEEEEEEEEE")
+
+    let logCountries = {
+      username: this.userName,
+      numberCountriesReturned: this.numberCountriesReturned
+    }
+
+
+    this.projectService.create(logCountries)
     .then(({data}) => {
       this.isSaving = false
       Swal.fire({
@@ -45,11 +55,14 @@ export class CreateComponent {
       })
       this.userName = ""
       this.numberCountriesReturned = 0
-      this.logCountriesService.getAll().then(({data}) => {
+      this.dataSource = data;
+
+      console.log(data);
+      /*this.logCountriesService.getAll().then(({data}) => {
         this.logCountries = data;
         this.dataSource = data;
       }).catch(error => {return error})
-      return data
+      return data*/
  
     }).catch(error => {
       this.isSaving = false
